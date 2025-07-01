@@ -228,7 +228,6 @@
             fill: currentColor;
         }
 
-        /* Actions rapides mobiles */
         .quick-actions {
             display: flex;
             justify-content: space-around;
@@ -394,7 +393,6 @@
     </div>
 
     <script>
-        // Configuration par défaut - Vous pouvez modifier ces valeurs
         const config = {
             name: "Hugo Aschenbrenner",
             title: "Relationship Manager & Sales Assistant",
@@ -404,35 +402,28 @@
             cvUrl: "https://drive.google.com/file/d/1cQkrxouij9eiVL2atM4zAxi5QpVbEv2O/view?usp=drivesdk"
         };
 
-        // Fonction pour mettre à jour les informations
         function updateCard() {
             document.getElementById('name').textContent = config.name;
             document.getElementById('title').textContent = config.title;
             document.getElementById('company').textContent = config.company;
             document.getElementById('email').textContent = config.email;
             
-            // Générer les initiales pour l'avatar
             const initials = config.name.split(' ').map(word => word[0]).join('').toUpperCase();
             document.getElementById('avatar').textContent = initials;
             
-            // Mettre à jour les liens
             document.getElementById('linkedinBtn').href = config.linkedinUrl;
             document.getElementById('cvBtn').href = config.cvUrl;
         }
 
-        // Fonction pour personnaliser facilement la carte
         function customizeCard(newConfig) {
             Object.assign(config, newConfig);
             updateCard();
         }
 
-        // Initialiser la carte
         updateCard();
 
-        // Ajouter des effets sonores au clic (optionnel)
         document.querySelectorAll('.btn, .quick-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                // Animation de clic
                 this.style.transform = 'scale(0.95)';
                 setTimeout(() => {
                     this.style.transform = '';
@@ -440,7 +431,6 @@
             });
         });
 
-        // Fonction de partage natif mobile
         document.getElementById('shareBtn').addEventListener('click', async function(e) {
             e.preventDefault();
             
@@ -455,7 +445,6 @@
                     console.log('Partage annulé');
                 }
             } else {
-                // Fallback pour navigateurs non compatibles
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(window.location.href);
                     alert('Lien copié dans le presse-papiers !');
@@ -463,18 +452,16 @@
             }
         });
 
-        // Désactiver les effets de parallaxe sur mobile pour de meilleures performances
         const isMobile = window.innerWidth <= 768;
         
         if (!isMobile) {
-            // Effet de parallaxe sur la carte (desktop uniquement)
             document.addEventListener('mousemove', function(e) {
                 const card = document.querySelector('.business-card');
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
                 
-                const rotateX = (y / rect.height) * 5; // Réduit l'effet
+                const rotateX = (y / rect.height) * 5; 
                 const rotateY = (x / rect.width) * 5;
                 
                 card.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
@@ -486,15 +473,7 @@
             });
         }
 
-        // Exemple d'utilisation pour personnaliser la carte :
-        // customizeCard({
-        //     name: "Votre Nom",
-        //     title: "Votre Titre",
-        //     company: "Votre Entreprise",
-        //     email: "votre.email@example.com",
-        //     linkedinUrl: "https://www.linkedin.com/in/votre-profil",
-        //     cvUrl: "https://example.com/votre-cv.pdf"
-        // });
+
     </script>
 </body>
 </html>
